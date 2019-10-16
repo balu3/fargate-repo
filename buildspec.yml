@@ -14,8 +14,8 @@ phases:
       - apt-get update -y && apt-get install jq -y
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - IMAGE_REPO_NAME: "fargate-ecr"
-      - IMAGE_TAG: build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - IMAGE_REPO_NAME:fargate-ecr
+      - IMAGE_TAG:build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
     commands:
       - echo Build started on `date`
