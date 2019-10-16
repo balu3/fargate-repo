@@ -65,6 +65,7 @@
             "ExecutionRoleArn":"arn:aws:iam::374553884378:role/ecsTaskExecutionRole",
             "TaskRoleArn":"arn:aws:iam::374553884378:role/ecsTaskExecutionRole",
             "Memory":"512",
+	    "Family":"fargate-cf-stack-TaskDefinition1-EHWLYKDG42OQ"
             "ContainerDefinitions":[
                {
                   "Name":"fargate-container",
