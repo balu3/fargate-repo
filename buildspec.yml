@@ -27,7 +27,7 @@ phases:
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - docker images
-      - tmp=$(mktemp) && SHA=$(docker inspect $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest | jq -c '.[0].RepoDigests' | sed 's/[][]//g' | sed 's/"//g') && jq -r --arg SHA "$SHA" '.Resources.TaskDefinition1.Properties.ContainerDefinitions[0].Image=$SHA' ecs-taskdefinition-service-uat.json > "$tmp" 
+      - tmp=$(mktemp) && SHA=$(docker inspect $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG | jq -c '.[0].RepoDigests' | sed 's/[][]//g' | sed 's/"//g') && jq -r --arg SHA "$SHA" '.Resources.TaskDefinition1.Properties.ContainerDefinitions[0].Image=$SHA' ecs-taskdefinition-service-uat.json > "$tmp" 
       - cat $tmp
       - mv -f "$tmp" ecs-taskdefinition-service-uat.json
       - cat ecs-taskdefinition-service-uat.json
